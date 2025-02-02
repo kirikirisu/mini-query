@@ -43,10 +43,6 @@ export function useQuery<K>(key: string, fetcher: () => Promise<K>) {
     throw new Error("can not find observer");
   }
 
-  useState(() => {
-    observer.load();
-  });
-
   const state = useSyncExternalStore(
     useCallback(
       (onStoreChange) => {
@@ -57,6 +53,10 @@ export function useQuery<K>(key: string, fetcher: () => Promise<K>) {
     ),
     () => observer.getState<K>()
   );
+
+  useState(() => {
+    observer.load();
+  });
 
   return { data: state, refetch: observer.load.bind(observer) };
 }

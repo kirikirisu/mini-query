@@ -6,6 +6,7 @@
     "dev": "vite",
     "typecheck": "tsc -noEmit",
     "build": "vite build",
+    "build:mini-query": "cd ../../ && pnpm i && cd ./packages/core && pnpm build && cd ../react && pnpm build && cd ../../example/react",
     "lint": "eslint .",
     "preview": "vite preview"
   },
